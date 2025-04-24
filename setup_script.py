@@ -118,6 +118,8 @@ modules_root = '../'
     fname = 'sub-P001_ses-S001_run-001_task-training'
     data_root = '{str(DATA_DIR.resolve())}'
     delay_s = 0.5                  # delay inbetween commands -> time for LSL recorder to respond
+    soa_s=0.25
+    n_trials=6
 [macros.run_6d.cmds]
     # [<target_module>, <PCOMM>, <kwarg_name1 (optional)>, <kwarg_name2 (optional)>]
     com1 = ['dp-lsl-recording', 'UPDATE']
@@ -126,6 +128,7 @@ modules_root = '../'
     com4 = ['dp-brainvision-control', 'SET_SAVE_PATH', 'rec_dir=data_root']
     com5 = ['dp-lsl-recording', 'RECORD']
     com6 = ['dp-brainvision-control', 'START_SAVE', 'fname=fname']
+    com7 = ['dp-auditory-aphasia-paradigm', 'PLAY_6D', 'soa_s=soa_s', 'n_trials=n_trials']
 
 [macros.stop_recording]
     name = 'STOP LSL RECORDING'
@@ -133,7 +136,7 @@ modules_root = '../'
 [macros.stop_recording.cmds]
     com1 = ['dp-lsl-recording', 'STOPRECORD']
     com2 = ['dp-brainvision-control', 'STOP_SAVE']
-
+    com3 = ['dp-auditory-aphasia-paradigm', 'STOP']
 """
 
 control_room_cfg_pth = root_dir.joinpath(
